@@ -1,0 +1,16 @@
+<section class="login" fxLayout="column" fxLayoutAlign="center center">
+  <div class="mat-h1">Sign in to your existing account</div>
+  <form class="login-form" fxLayout="column" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input formControlName="username" type="text" matInput />
+      <mat-error *ngIf="form.get('username').invalid">Username is required.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input formControlName="password" type="password" matInput />
+      <mat-error *ngIf="form.get('password').invalid">Password is required.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="form.invalid">Submit</button>
+  </form>
+</section>

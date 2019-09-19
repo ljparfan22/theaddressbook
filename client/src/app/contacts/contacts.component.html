@@ -1,0 +1,11 @@
+<section class="actions" style="margin: 10px">
+  <button mat-raised-button color="accent" routerLink="/contacts/new">Add Contact</button>
+</section>
+<section class="contacts" fxLayout="row" fxLayoutAlign="space-between start">
+  <section class="contact-list">
+    <app-contact-list></app-contact-list>
+  </section>
+  <section style="width: 50%">
+    <router-outlet></router-outlet>
+  </section>
+</section>

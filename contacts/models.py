@@ -9,7 +9,7 @@ def nameFile(instance, filename):
 class Contact(models.Model):
     name = models.CharField(max_length=100, unique=False)
     deletion_date = models.DateTimeField(blank=True, null=True, default=None)
-    email = models.EmailField(max_length=100, unique=True)
+    email = models.EmailField(max_length=100)
     address = models.CharField(max_length=100, unique=False)
     phone_number = models.CharField(max_length=15)
     created_at = models.DateTimeField(auto_now_add=True)

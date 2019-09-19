@@ -1,0 +1,15 @@
+<section
+  class="contact"
+  routerLink="{{ contact.id }}"
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  *ngFor="let contact of contacts"
+>
+  <div class="mat-h1">
+    {{ contact.name }}
+  </div>
+  <div class="mat-h3" class="mat-h3" fxLayout fxLayoutAlign="start center" fxLayoutGap="7px">
+    <mat-icon>phone</mat-icon>
+    <span>{{ contact.phoneNumber }}</span>
+  </div>
+</section>

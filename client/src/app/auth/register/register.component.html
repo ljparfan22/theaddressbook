@@ -1,0 +1,36 @@
+<section class="register" fxLayout="column" fxLayoutAlign="center">
+  <div class="mat-display-1">Create an account</div>
+  <form class="register-form" fxLayout="column" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input formControlName="username" type="text" matInput />
+      <mat-error *ngIf="form.get('username').invalid">Username is invalid.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input formControlName="email" type="email" matInput />
+      <mat-error *ngIf="form.get('email').invalid">Email is invalid.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input formControlName="firstName" type="text" matInput />
+      <mat-error *ngIf="form.get('firstName').invalid">First Name is invalid.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input formControlName="lastName" type="text" matInput />
+      <mat-error *ngIf="form.get('lastName').invalid">Last Name is invalid.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phone Number</mat-label>
+      <input formControlName="phoneNumber" type="text" matInput />
+      <mat-error *ngIf="form.get('phoneNumber').invalid">Phone Number is invalid.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input formControlName="password" type="password" matInput />
+      <mat-error *ngIf="form.get('password').invalid">Password is invalid.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="form.invalid">Submit</button>
+  </form>
+</section>

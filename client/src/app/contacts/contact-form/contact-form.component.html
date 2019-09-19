@@ -1,0 +1,24 @@
+<section class="card contact-form">
+  <div class="form-title mat-display-1">{{ contactId ? 'Edit' : 'Add' }} Contact</div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" type="text" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="phoneNumber" type="text" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Address</mat-label>
+      <textarea matInput formControlName="address"></textarea>
+    </mat-form-field>
+    <button mat-raised-button [color]="!contactId ? 'primary' : ''" class="bg-black" style="margin-top: 20px">
+      Submit
+    </button>
+  </form>
+</section>

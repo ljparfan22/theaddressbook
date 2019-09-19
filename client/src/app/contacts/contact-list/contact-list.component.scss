@@ -1,0 +1,31 @@
+.contact {
+  padding: 1rem;
+  border: #ccc 1px dotted;
+  margin: 0.7rem 0;
+  background-color: #f3f2f3;
+}
+
+.mat-h3 {
+  margin-bottom: 0px;
+  letter-spacing: 2px;
+  margin: 0px;
+}
+
+.mat-h1 {
+  letter-spacing: 2px;
+  font-weight: 900;
+  margin: 0px;
+}
+
+.contact {
+  cursor: pointer;
+}
+
+.contact:hover {
+  background-color: #fafafa;
+  color: gray;
+}
+
+.contact:focus {
+  outline: none;
+}

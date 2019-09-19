@@ -1,0 +1,21 @@
+<section class="card contact-detail" fxLayout="column" fxLayoutAlign="start start">
+  <div class="mat-h1">
+    {{ contact?.name }}
+  </div>
+  <div class="mat-h3" class="mat-h3" fxLayout fxLayoutAlign="start center" fxLayoutGap="7px">
+    <mat-icon>email</mat-icon>
+    <span>{{ contact?.email }}</span>
+  </div>
+  <div class="mat-h3" class="mat-h3" fxLayout fxLayoutAlign="start center" fxLayoutGap="7px">
+    <mat-icon>phone</mat-icon>
+    <span>{{ contact?.phoneNumber }}</span>
+  </div>
+  <div class="mat-h3" class="mat-h3" fxLayout fxLayoutAlign="start center" fxLayoutGap="7px">
+    <mat-icon>my_location</mat-icon>
+    <span>{{ contact?.address }}</span>
+  </div>
+  <div class="actions" fxLayout fxLayoutGap="10px">
+    <button mat-raised-button style="background-color: #323232; color: white;" routerLink="edit">Edit</button>
+    <button mat-raised-button color="warn" (click)="openDialog()">Delete</button>
+  </div>
+</section>

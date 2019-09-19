@@ -1,0 +1,63 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="isHandset$ | async"
+  >
+    <mat-icon class="sidenav-logo" color="primary">contacts</mat-icon>
+    <div></div>
+    <mat-nav-list fxLayout="column" fxLayoutAlign="center center">
+      <ng-container *ngIf="user">
+        <div fxLayout fxLayoutAlign="center">
+          <a mat-list-item (click)="signOut()">Sign Out</a>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!user">
+        <div fxLayout fxLayoutAlign="center">
+          <a mat-list-item routerLink="/login">Sign In</a>
+        </div>
+      </ng-container>
+
+      <div fxLayout fxLayoutAlign="center">
+        <a mat-list-item routerLink="/register">Register</a>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div class="brand" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" routerLink="/">
+        <mat-icon *ngIf="!(isHandset$ | async)">contacts</mat-icon>
+        <span>conoscenza</span>
+      </div>
+      <div class="navbar-links" *ngIf="!(isHandset$ | async)">
+        <ng-container *ngIf="user; else notAuthenticated">
+          <button mat-button [matMenuTriggerFor]="menu">
+            {{ user.username }}<mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="signOut()">Sign Out</button>
+          </mat-menu>
+        </ng-container>
+        <ng-template #notAuthenticated>
+          <button mat-button routerLink="/login">Sign In</button>
+          <button mat-button routerLink="/register">Register</button>
+        </ng-template>
+      </div>
+    </mat-toolbar>
+    <div class="container">
+      <ng-content></ng-content>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
