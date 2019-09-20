@@ -19,6 +19,7 @@ import { ContactListComponent } from './contacts/contact-list/contact-list.compo
 import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
 import { ContactsRoutingModule } from './contacts/contacts-routing.module';
 import { DialogComponent } from './dialog/dialog.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   entryComponents: [DialogComponent],
@@ -39,6 +40,7 @@ import { DialogComponent } from './dialog/dialog.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ScrollingModule,
     FlexLayoutModule,
     AppRoutingModule,
     BrowserAnimationsModule,

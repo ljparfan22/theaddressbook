@@ -1,19 +1,17 @@
 <ng-container *ngIf="contacts.length > 0; else noContacts">
-  <section
-    class="contact"
-    routerLink="{{ contact.id }}"
-    fxLayout="row"
-    fxLayoutAlign="space-between center"
-    *ngFor="let contact of contacts"
-  >
-    <div class="mat-h1">
-      {{ contact.name }}
+  <cdk-virtual-scroll-viewport itemSize="6" class="example-viewport">
+    <div class="contact" routerLink="{{ contact.id }}" *cdkVirtualFor="let contact of contacts">
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="example-item">
+        <div class="mat-h1">
+          {{ contact.name }}
+        </div>
+        <div class="mat-h3" class="mat-h3" fxLayout fxLayoutAlign="start center" fxLayoutGap="7px">
+          <mat-icon>phone</mat-icon>
+          <span>{{ contact.phoneNumber }}</span>
+        </div>
+      </div>
     </div>
-    <div class="mat-h3" class="mat-h3" fxLayout fxLayoutAlign="start center" fxLayoutGap="7px">
-      <mat-icon>phone</mat-icon>
-      <span>{{ contact.phoneNumber }}</span>
-    </div>
-  </section>
+  </cdk-virtual-scroll-viewport>
 </ng-container>
 <ng-template #noContacts>
   <div class="mat-display-1">
