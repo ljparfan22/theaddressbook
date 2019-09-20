@@ -37,9 +37,15 @@
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <div class="brand" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" routerLink="/">
+      <div class="brand" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="25px" routerLink="/">
         <mat-icon *ngIf="!(isHandset$ | async)">contacts</mat-icon>
         <span>conoscenza</span>
+        <form style="margin-left:50px; width: 40%" [formGroup]="form">
+          <mat-form-field style="width: 100%">
+            <mat-label>Filter...</mat-label>
+            <input matInput type="text" formControlName="value" />
+          </mat-form-field>
+        </form>
       </div>
       <div class="navbar-links" *ngIf="!(isHandset$ | async)">
         <ng-container *ngIf="user; else notAuthenticated">

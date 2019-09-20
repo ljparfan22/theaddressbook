@@ -11,6 +11,7 @@ export class ContactService {
   private _contacts: BehaviorSubject<any[]> = new BehaviorSubject([]);
   // tslint:disable-next-line: variable-name
   private _selectedContact: BehaviorSubject<any> = new BehaviorSubject(null);
+  private originalContacts: any[] = [];
   constructor(private http: HttpClient) {}
 
   public get contacts(): Observable<any[]> {
@@ -30,11 +31,26 @@ export class ContactService {
             image: contact.image ? `${environment.apiBaseUrl}${contact.image}` : null
           }))
         );
+        this.originalContacts = [
+          ...contacts.map(contact => ({
+            ...convertToCamelCase(contact),
+            image: contact.image ? `${environment.apiBaseUrl}${contact.image}` : null
+          }))
+        ];
         return of(null);
       })
     );
   }
 
+  public filterContacts(keyword: string) {
+    this._contacts.next(
+      this.originalContacts.filter(c =>
+        JSON.stringify(c)
+          .toLowerCase()
+          .includes(keyword.toLowerCase())
+      )
+    );
+  }
   public addContact(contact) {
     let contactsInStore = [];
     return this._contacts.pipe(
