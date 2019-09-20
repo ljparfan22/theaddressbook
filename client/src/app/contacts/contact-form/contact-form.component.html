@@ -1,5 +1,11 @@
 <section class="card contact-form">
-  <div class="form-title mat-display-1">{{ contactId ? 'Edit' : 'Add' }} Contact</div>
+  <div class="form-title mat-display-1" fxLayout fxLayoutAlign="space-between start">
+    <span> {{ contactId ? 'Edit' : 'Add' }} Contact </span>
+
+    <button (click)="populateFormWithTestData()" type="button" color="accent" mat-raised-button>
+      Populate
+    </button>
+  </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column">
     <mat-form-field>
       <mat-label>Name</mat-label>
@@ -17,7 +23,35 @@
       <mat-label>Address</mat-label>
       <textarea matInput formControlName="address"></textarea>
     </mat-form-field>
-    <button mat-raised-button [color]="!contactId ? 'primary' : ''" class="bg-black" style="margin-top: 20px">
+    <mat-form-field>
+      <mat-label>Image</mat-label>
+      <ngx-mat-file-input #removableInput formControlName="image"></ngx-mat-file-input>
+      <button
+        type="button"
+        mat-icon-button
+        matSuffix
+        *ngIf="!removableInput.empty"
+        (click)="removableInput.clear($event)"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+      <button type="button" mat-icon-button matSuffix *ngIf="removableInput.empty">
+        <mat-icon>folder</mat-icon>
+      </button>
+    </mat-form-field>
+    <div class="image" style="width: 100%" fxLayout fxLayoutAlign="center center" *ngIf="imageSrc">
+      <img
+        [src]="imageSrc ? imageSrc : 'https://x.kinja-static.com/assets/images/logos/placeholders/default.png'"
+        class="contact-image"
+      />
+    </div>
+    <button
+      [disabled]="form.invalid"
+      mat-raised-button
+      [color]="!contactId ? 'primary' : ''"
+      class="bg-black"
+      style="margin-top: 20px"
+    >
       Submit
     </button>
   </form>

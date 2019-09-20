@@ -58,7 +58,18 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
-
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'enctype'
+]
 ROOT_URLCONF = 'conoscenza.urls'
 
 TEMPLATES = [
@@ -135,8 +146,12 @@ WSGI_APPLICATION = 'conoscenza.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'conoscenzadb',
+        'USER': 'postgres',
+        'PASSWORD': 'qweqwe1',
+        'HOST': '192.168.99.100',
+        'PORT': 5432
     }
 }
 

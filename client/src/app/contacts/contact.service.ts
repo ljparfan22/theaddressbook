@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { tap, switchMap, map, take } from 'rxjs/operators';
 import { convertToCamelCase, convertToSnakeCase } from '../utils/casing-converter';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ContactService {
@@ -23,20 +24,24 @@ export class ContactService {
   public fetchContacts() {
     return this.http.get<any[]>('/contacts/').pipe(
       tap(contacts => {
-        this._contacts.next(contacts.map(contact => convertToCamelCase(contact)));
+        this._contacts.next(
+          contacts.map(contact => ({
+            ...convertToCamelCase(contact),
+            image: contact.image ? `${environment.apiBaseUrl}${contact.image}` : null
+          }))
+        );
         return of(null);
       })
     );
   }
 
-  public addContact(contact: any) {
-    contact.image = null;
+  public addContact(contact) {
     let contactsInStore = [];
     return this._contacts.pipe(
       take(1),
       switchMap(contacts => {
         contactsInStore = contacts;
-        return this.http.post<any>('/contacts/', { ...convertToSnakeCase(contact) });
+        return this.http.post<any>('/contacts/', contact);
       }),
       map(result => {
         this._contacts.next([...contactsInStore, convertToCamelCase(result)]);
@@ -48,15 +53,18 @@ export class ContactService {
   public getContact(id: number) {
     return this.http.get<any>(`/contacts/${id}/`).pipe(
       switchMap(contact => {
-        this._selectedContact.next(convertToCamelCase(contact));
+        this._selectedContact.next({
+          ...convertToCamelCase(contact),
+          image: contact.image ? `${environment.apiBaseUrl}${contact.image}` : null
+        });
         return this.selectedContact;
       })
     );
   }
 
-  public updateContact(id: number, contact: any) {
+  public updateContact(id: number, contact) {
     let updatedContact: any;
-    return this.http.patch<any>(`/contacts/${id}/`, { ...convertToSnakeCase(contact) }).pipe(
+    return this.http.patch<any>(`/contacts/${id}/`, contact).pipe(
       switchMap(updatedContactInDb => {
         updatedContact = updatedContactInDb;
         return this._contacts;

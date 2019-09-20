@@ -10,15 +10,16 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ApiInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().append('Authorization', `Bearer ${token}`);
+    const headers = req.headers.append('Authorization', `Bearer ${token}`);
     const request = token
-      ? req.clone({ url: `http://localhost:8000/api${req.url}`, headers })
-      : req.clone({ url: `http://localhost:8000/api${req.url}` });
+      ? req.clone({ url: `${environment.apiBaseUrl}/api${req.url}`, headers })
+      : req.clone({ url: `${environment.apiBaseUrl}/api${req.url}` });
     return next.handle(request).pipe(
       catchError(error => {
         if (error instanceof HttpErrorResponse) {

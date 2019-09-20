@@ -22,6 +22,7 @@ import {
   MatBadgeModule,
   MatProgressSpinnerModule
 } from '@angular/material';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import {
     MatAutocompleteModule,
     MatTabsModule,
     MatDialogModule,
+    MaterialFileInputModule,
     MatTooltipModule,
     MatBadgeModule,
     MatTableModule,
@@ -55,6 +57,7 @@ import {
     MatAutocompleteModule,
     MatSelectModule,
     MatToolbarModule,
+    MaterialFileInputModule,
     MatDialogModule,
     MatButtonModule,
     MatBadgeModule,
