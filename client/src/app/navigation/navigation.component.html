@@ -40,7 +40,7 @@
       <div class="brand" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="25px" routerLink="/">
         <mat-icon *ngIf="!(isHandset$ | async)">contacts</mat-icon>
         <span>conoscenza</span>
-        <form style="margin-left:50px; width: 40%" [formGroup]="form">
+        <form style="margin-left:50px; width: 40%" [formGroup]="form" *ngIf="user">
           <mat-form-field style="width: 100%">
             <mat-label>Filter...</mat-label>
             <input matInput type="text" formControlName="value" />
